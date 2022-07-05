@@ -43,7 +43,7 @@ function Header() {
             </button>
           </li>
           <li>
-            <button className='text-white bg-[#0267f5] hover:bg-[#2c5b9c] '>
+            <button className='text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-l from-blue-500 to-cyan-500 py-2 px-3 rounded-md text-base'>
               Login
             </button>
           </li>
