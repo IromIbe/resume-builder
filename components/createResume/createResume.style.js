@@ -13,10 +13,12 @@ export const CreateBody = styled.div`
       flex: 1;
       margin: 15px 5px;
       input,
-      textarea {
+      textarea,
+      select {
         font-weight: normal;
         margin-top: 7px;
         width: 100%;
+        font-size: 14.5px;
         border: 1px solid #ccc;
         padding: 8px;
         border-radius: 6px;
@@ -24,6 +26,9 @@ export const CreateBody = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      @media only screen and (max-width: 400px) {
+        font-size: 14px;
       }
     }
   }

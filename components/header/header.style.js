@@ -7,7 +7,7 @@ export const HeaderCont = styled.div`
   left: 0;
   z-index: 1;
   width: 100%;
-  font-family: "Montserrat", sans-serif;
+  ${"" /* font-family: "Montserrat", sans-serif; */}
   @media only screen and (max-width: 300px) {
     padding-left: unset;
     padding-right: unset;
