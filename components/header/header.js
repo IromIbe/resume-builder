@@ -8,6 +8,8 @@ import Link from "next/dist/client/link";
 function Header() {
   const [isMobile, setIsMobile] = useState(false);
 
+  const resume = localStorage.getItem("allData");
+
   return (
     <HeaderCont className='bg-[#f8f9fa] py-4 md:px-10 px-2 flex justify-between items-center'>
       <div className='logo'>
@@ -46,9 +48,17 @@ function Header() {
           }
         >
           <li>
-            <Link href='/create-resume'>
-              <a href=''>Create Resume</a>
-            </Link>
+            {resume ? (
+              <Link href='/view-resume'>
+                <a href='' className='text-[#0267f5]'>
+                  view Resume
+                </a>
+              </Link>
+            ) : (
+              <Link href='/create-resume'>
+                <a href=''>Create Resume</a>
+              </Link>
+            )}
           </li>
           <li>
             <button className='text-[#0267f5] font-semibold py-2 hover:text-white hover:bg-gradient-to-l from-blue-500 to-cyan-500  w-20'>

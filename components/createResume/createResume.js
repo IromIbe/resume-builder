@@ -4,29 +4,21 @@ import { RiAddLine } from "react-icons/ri";
 import { RiCloseLine } from "react-icons/ri";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-
-// select options
-const skills = [
-  { value: "React", label: "React" },
-  { value: "Angular", label: "Angular" },
-  { value: "JavaScript", label: "JavaScript" },
-  { value: "TypeScript", label: "TypeScript" },
-  { value: "HTML", label: "HTML" },
-  { value: "CSS", label: "CSS" },
-  { value: "SASS", label: "SASS" },
-  { value: "LESS", label: "LESS" },
-  { value: "Bootstrap", label: "Bootstrap" },
-  { value: "MongoDB", label: "MongoDB" },
-  { value: "MySQL", label: "MySQL" },
-  { value: "PostgreSQL", label: "PostgreSQL" },
-  { value: "Redux", label: "Redux" },
-  { value: "Redux-Saga", label: "Redux-Saga" },
-  { value: "React-Router", label: "React-Router" },
-  { value: "Express", label: "Express" },
-  { value: "NodeJS", label: "NodeJS" },
-];
+import Modal from "../modal/modal";
+import { skills } from "./skills";
+import Link from "next/dist/client/link";
+import { useRouter } from "next/router";
 
 function CreateResume() {
+  // modal for submitted successfully
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const [view, setView] = useState(false);
+
+  // for routing to view-resume page
+  const router = useRouter();
+
   // setting the various experience categories
   const [experience, setExperience] = useState({
     company: "Capgemini",
@@ -43,6 +35,7 @@ function CreateResume() {
     degree: "BSC",
     year: 2009,
   });
+  // setting the institution category in an array
   const [institutionList, setInstitutionList] = useState([institutions]);
 
   // each user data value that would require an onChange event
@@ -123,9 +116,20 @@ function CreateResume() {
   // making react select animatable
   const animatedComponents = makeAnimated();
 
+  // handle submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const allData = [
+      { ...userData },
+      { exp: [...experienceList] },
+      { school: [...institutionList] },
+    ];
+    localStorage.setItem("allData", JSON.stringify(allData));
+    setShow(true);
+  };
   return (
-    <CreateBody className='lg:py-10 md:py-10 sm:py-8 py-5 md:px-10 lg:px-20 px-4 flex flex-col justify-center w-100'>
-      <form action=''>
+    <CreateBody className='md:py-8  py-5 md:px-10 lg:px-20 px-4 flex flex-col justify-center w-100'>
+      <form action='' onSubmit={handleSubmit}>
         <div className='flex'>
           <label htmlFor='name'>
             Name
@@ -135,6 +139,7 @@ function CreateResume() {
               name='name'
               value={userData.name}
               onChange={handleChange}
+              required
             />
           </label>
           <label htmlFor='email'>
@@ -145,6 +150,7 @@ function CreateResume() {
               name='email'
               value={userData.email}
               onChange={handleChange}
+              required
             />
           </label>
         </div>
@@ -157,6 +163,7 @@ function CreateResume() {
               name='position'
               value={userData.position}
               onChange={handleChange}
+              required
             />
           </label>
           <label htmlFor='phone'>
@@ -167,6 +174,7 @@ function CreateResume() {
               value={userData.phone}
               name='phone'
               onChange={handleChange}
+              required
             />
           </label>
         </div>
@@ -181,7 +189,8 @@ function CreateResume() {
               rows='2'
               value={userData.address}
               onChange={handleChange}
-            ></input>
+              required
+            />
           </label>
         </div>
         <div className='experience mt-10'>
@@ -200,6 +209,7 @@ function CreateResume() {
                       onChange={(e) =>
                         handleMultipleChange(e, index, "experience")
                       }
+                      required
                     />
                   </label>
                   <label htmlFor=''>
@@ -211,6 +221,7 @@ function CreateResume() {
                       onChange={(e) =>
                         handleMultipleChange(e, index, "experience")
                       }
+                      required
                     />
                   </label>
                   <label htmlFor=''>
@@ -222,6 +233,7 @@ function CreateResume() {
                       onChange={(e) =>
                         handleMultipleChange(e, index, "experience")
                       }
+                      required
                     />
                   </label>
                 </div>
@@ -276,6 +288,7 @@ function CreateResume() {
                       value={institution.school}
                       className='w-full'
                       onChange={(e) => handleMultipleChange(e, index, "school")}
+                      required
                     />
                   </label>
                   <label htmlFor='degree'>
@@ -286,6 +299,7 @@ function CreateResume() {
                       name='degree'
                       value={institution.degree}
                       onChange={(e) => handleMultipleChange(e, index, "school")}
+                      required
                     />
                   </label>
                   <label htmlFor='year'>
@@ -296,6 +310,7 @@ function CreateResume() {
                       name='year'
                       value={institution.year}
                       onChange={(e) => handleMultipleChange(e, index, "school")}
+                      required
                     />
                   </label>
                 </div>
@@ -325,6 +340,23 @@ function CreateResume() {
           </button>
         </div>
       </form>
+      {show && (
+        <Modal handleClose={handleClose}>
+          <div className='flex justify-center items-center flex-col'>
+            <img
+              src='/hurray.gif'
+              alt=''
+              style={{ width: "200px", height: "130px" }}
+            />
+            <h1 className='text-3xl font-bold'>Resume Successfully Created!</h1>
+            <Link href='/view-resume'>
+              <button className='text-white font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-l from-blue-500 to-cyan-500 py-2 px-3 rounded-md w-28 flex justify-center items-end my-6'>
+                View
+              </button>
+            </Link>
+          </div>
+        </Modal>
+      )}
     </CreateBody>
   );
 }
