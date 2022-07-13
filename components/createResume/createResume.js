@@ -16,14 +16,11 @@ function CreateResume() {
   const handleClose = () => setShow(false);
   const [view, setView] = useState(false);
 
-  // for routing to view-resume page
-  const router = useRouter();
-
   // setting the various experience categories
   const [experience, setExperience] = useState({
-    company: "Capgemini",
-    designation: "Associate Software Engineer",
-    role: "Full Stack Developer (React and Node)",
+    company: "",
+    designation: "",
+    role: "",
   });
 
   // setting the experience category in an array
@@ -31,20 +28,21 @@ function CreateResume() {
 
   // institutional experience
   const [institutions, setInstitutions] = useState({
-    school: "Unical",
-    degree: "BSC",
-    year: 2009,
+    school: "",
+    degree: "",
+    year: 0,
   });
   // setting the institution category in an array
   const [institutionList, setInstitutionList] = useState([institutions]);
 
   // each user data value that would require an onChange event
   const [userData, setUserData] = useState({
-    name: "Cynthia Bisong",
-    email: "CynthiaBisong@gmail.com",
-    phone: "09123456789",
-    address: "23 Main St, New York, NY 10001",
-    position: "Chief Software Engineer",
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    position: "",
+    about: "",
   });
 
   // adding multiple experience and institutions category
@@ -119,11 +117,13 @@ function CreateResume() {
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    const allData = [
-      { ...userData },
-      { exp: [...experienceList] },
-      { school: [...institutionList] },
-    ];
+    const allData = {
+      userData: userData,
+      skills: skills,
+      exp: experienceList,
+      school: institutionList,
+    };
+
     localStorage.setItem("allData", JSON.stringify(allData));
     setShow(true);
   };
@@ -154,6 +154,22 @@ function CreateResume() {
             />
           </label>
         </div>
+        <div className='about'>
+          <label htmlFor='about'>
+            About
+            <textarea
+              type='text'
+              id='about'
+              name='about'
+              value={userData.about}
+              onChange={handleChange}
+              required
+              cols='30'
+              rows='3'
+            />
+          </label>
+        </div>
+
         <div className='flex'>
           <label htmlFor='position'>
             Current Position
