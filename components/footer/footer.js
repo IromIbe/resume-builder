@@ -30,6 +30,7 @@ function Footer() {
               <div className='link' key={index}>
                 <p className='text-white leading-8 hover:text-[#0267f5] cursor-pointer'>
                   {link}
+
                 </p>
               </div>
             ))}

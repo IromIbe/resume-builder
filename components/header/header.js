@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HeaderCont } from "./header.style";
 import { FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -7,8 +7,16 @@ import Link from "next/dist/client/link";
 
 function Header() {
   const [isMobile, setIsMobile] = useState(false);
+  const [resume, setResume] = useState({})
+  console.log(resume);
 
-  const resume = localStorage.getItem("allData");
+
+ useEffect(() => {
+    // Perform localStorage action
+     const item = localStorage.getItem('allData')
+     JSON.parse(item)
+     setResume(item)
+  }, [])
 
   return (
     <HeaderCont className='bg-[#f8f9fa] py-4 md:px-10 px-2 flex justify-between items-center'>

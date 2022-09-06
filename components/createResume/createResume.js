@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CreateBody } from "./createResume.style";
 import { RiAddLine } from "react-icons/ri";
 import { RiCloseLine } from "react-icons/ri";
@@ -123,9 +123,12 @@ function CreateResume() {
       exp: experienceList,
       school: institutionList,
     };
+    if (typeof window !== "undefined") {
 
-    localStorage.setItem("allData", JSON.stringify(allData));
-    setShow(true);
+      localStorage.setItem("allData", JSON.stringify(allData));
+
+      }
+      setShow(true);
   };
   return (
     <CreateBody className='md:py-8  py-5 md:px-10 lg:px-20 px-4 flex flex-col justify-center w-100'>
