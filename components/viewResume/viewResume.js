@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 function ViewResume() {
   const [resume, setResume] = useState({});
-  console.log(resume, "resume");
 
   useEffect(() => {
     // Perform localStorage action

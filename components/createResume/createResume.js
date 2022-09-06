@@ -92,7 +92,6 @@ function CreateResume() {
   // handling the onChange event of each user data value
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.name, e.target.value);
     setUserData({ ...userData, [name]: value });
   };
 

@@ -8,14 +8,13 @@ import Link from "next/dist/client/link";
 function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [resume, setResume] = useState({})
-  console.log(resume);
+
 
 
  useEffect(() => {
     // Perform localStorage action
      const item = localStorage.getItem('allData')
-     JSON.parse(item)
-     setResume(item)
+     setResume( item)
   }, [])
 
   return (
