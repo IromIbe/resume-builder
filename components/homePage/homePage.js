@@ -12,7 +12,7 @@ function HomePage() {
             <img src='/Resume.svg' alt='' style={{ minWidth: "280px" }} />
           </div>
           <div className='more-info justify-self-start'>
-            <h1 className='sm:text-5xl text-4xl font-bold leading-14 mb-6'>
+            <h1 className='sm:text-5xl text-4xl font-bold leading-[47px] mb-6'>
               Try Our Professional <br /> Resume Builder Now!
             </h1>
             <p className='mb-6 max-w-sm tracking-sm leading-7 text-base text-gray-700'>
