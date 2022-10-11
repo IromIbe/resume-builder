@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <HomeCont className=''>
       <div className='first-cont  bg-[#f2f5fa]   py-7 md:py-5 lg:py-0'>
-        <div className=' item flex justify-evenly items-center mx-1'>
+        <div className=' item flex sm:flex-row flex-col justify-evenly items-center mx-1'>
           <div className='image'>
             <img src='/Resume.svg' alt='' style={{ minWidth: "280px" }} />
           </div>
